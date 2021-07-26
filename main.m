@@ -18,6 +18,26 @@ Dhte = test_stage(Lte28, Te28);
 toc
 TimeHOG = toc;
 
+%weight for non-HOG
+[Ws, f] = SRMCC_bfgsML(Dtr, 'f_SRMCC','g_SRMCC',0.002,10,62);
+
+%weight for HOG
+[Whs, fh] = SRMCC_bfgsML(Dhtr,'f_SRMCC','g_SRMCC',0.001,10,57);
+
+%Classification HOG
+tic
+[Ch, HOG_acc] = run_class(Whs,Dhte,10,Lte28);
+toc
+HOG_class_time = toc;
+
+%Classification non-HOG
+tic
+[C, non_HOG_acc] = run_class(Ws, Dte,10,Lte28);
+toc
+nonHOG_class_time = toc;
+
+%FUNCTIONS
+
 %the pre_process_stage function || from lab manual
 function [Dhtr_Out] = pre_process_stage(mat_train, ytr)
 H = [];
@@ -43,3 +63,28 @@ end
 Dhte_Out = [Hte; 1+Lte(:)'];
 end
 %end of function
+
+%the run_class function
+function [C, accu] = run_class(Ws,Dte,K,Lte28)
+l = size(Dte,1);
+Dtest = Dte;
+Dtest(l,:) = ones;
+
+[~, ind_pre] = max((Dtest'*Ws)');
+ytest = 1 + Lte28(:)';
+
+C = zeros(K,K);
+
+for i = 1:K
+    ind_i = find(ytest == i);
+    for j = 1:K
+        ind_pre_j = find(ind_pre == j);
+        C(i,j) = length(intersect(ind_i,ind_pre_j));
+    end
+    %end of first for loop
+end
+
+accu = trace(C)./sum(C,'all');
+
+end
+%end of the function
