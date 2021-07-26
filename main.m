@@ -9,3 +9,11 @@ ytr = [u 2*u 3*u 4*u 5*u 6*u 7*u 8*u 9*u 10*u];
 Dtr = [X1600; yt];
 Dte = [Te28; 1+Lte28(:)'];
 
+%Preprocesssing Stage for HOG
+Dhtr = PreProcessStage(X1600,ytr);
+
+%Testing Stage HOG
+tic
+Dhte = TestStage(Lte28, Te28);
+toc
+TimeHOG = toc;
