@@ -1,3 +1,4 @@
+clc;clear;
 %loading the datasets given in the lab
 load Te28.mat;
 load X1600.mat;
@@ -44,19 +45,13 @@ time_HOG = (TimeHOG + HOG_class_time)/10000;
 nonHOG_per_sec = 1/time_nonHOG;
 HOG_per_sec = 1/time_HOG;
 
-fprintf('Accuracy - HOG');
-disp(HOG_acc);
-fprintf('Time HOG');
-disp(time_HOG);
-fprintf('HOG per sec')
-disp(HOG_per_sec);
+fprintf('Accuracy - HOG %.2f%%',HOG_acc*100);
+fprintf('Time HOG %.2f seconds',time_HOG);
+fprintf('HOG per sec %.2f samples/second',HOG_per_sec);
 
-fprintf('Accuracy - Non-HOG');
-disp(non_HOG_acc);
-fprintf('Time Non-HOG');
-disp(time_nonHOG);
-fprintf('Non-HOG per sec');
-disp(nonHOG_per_sec);
+fprintf('Accuracy - Non-HOG %.2f%%',non_HOG_acc);
+fprintf('Time Non-HOG %.2f seconds',time_nonHOG);
+fprintf('Non-HOG per sec %.2f samples/second',nonHOG_per_sec);
 
 %FUNCTIONS
 
