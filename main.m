@@ -38,7 +38,7 @@ nonHOG_class_time = toc;
 
 %TIME
 time_nonHOG = nonHOG_class_time/10000;
-time_HOG = (Time_HOG + HOG_class_time)/10000;
+time_HOG = (TimeHOG + HOG_class_time)/10000;
 
 %per sec
 nonHOG_per_sec = 1/time_nonHOG;
