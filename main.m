@@ -6,7 +6,7 @@ load Lte28.mat;
 %Preparing the data :: code from the lab manual
 u = ones(1,1600);
 ytr = [u 2*u 3*u 4*u 5*u 6*u 7*u 8*u 9*u 10*u];
-Dtr = [X1600; yt];
+Dtr = [X1600; ytr];
 Dte = [Te28; 1+Lte28(:)'];
 
 %Preprocesssing Stage for HOG
@@ -35,6 +35,28 @@ tic
 [C, non_HOG_acc] = run_class(Ws, Dte,10,Lte28);
 toc
 nonHOG_class_time = toc;
+
+%TIME
+time_nonHOG = nonHOG_class_time/10000;
+time_HOG = (Time_HOG + HOG_class_time)/10000;
+
+%per sec
+nonHOG_per_sec = 1/time_nonHOG;
+HOG_per_sec = 1/time_HOG;
+
+printf('Accuracy - HOG');
+disp(HOG_acc);
+printf('Time HOG');
+disp(time_HOG);
+printf('HOG per sec')
+disp(HOG_per_sec);
+
+printf('Accuracy - Non-HOG');
+disp(non_HOG_acc);
+printf('Time Non-HOG');
+disp(time_nonHOG);
+printf('Non-HOG per sec');
+disp(nonHOG_per_sec);
 
 %FUNCTIONS
 
