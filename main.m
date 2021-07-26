@@ -44,18 +44,18 @@ time_HOG = (TimeHOG + HOG_class_time)/10000;
 nonHOG_per_sec = 1/time_nonHOG;
 HOG_per_sec = 1/time_HOG;
 
-printf('Accuracy - HOG');
+fprintf('Accuracy - HOG');
 disp(HOG_acc);
-printf('Time HOG');
+fprintf('Time HOG');
 disp(time_HOG);
-printf('HOG per sec')
+fprintf('HOG per sec')
 disp(HOG_per_sec);
 
-printf('Accuracy - Non-HOG');
+fprintf('Accuracy - Non-HOG');
 disp(non_HOG_acc);
-printf('Time Non-HOG');
+fprintf('Time Non-HOG');
 disp(time_nonHOG);
-printf('Non-HOG per sec');
+fprintf('Non-HOG per sec');
 disp(nonHOG_per_sec);
 
 %FUNCTIONS
