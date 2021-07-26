@@ -18,7 +18,7 @@ Dhte = test_stage(Lte28, Te28);
 toc
 TimeHOG = toc;
 
-%the pre_process_stage function
+%the pre_process_stage function || from lab manual
 function [Dhtr_Out] = pre_process_stage(mat_train, ytr)
 H = [];
 for i = 1:16000
@@ -30,3 +30,16 @@ end
 Dhtr_Out = [H; ytr];
 end
 %end of the function
+
+%the test_stage function || from lab manual
+function [Dhte_Out] = test_stage(Lte, Te)
+Hte = [];
+for i = 1:length(Lte)
+    xi = Te(:,i);
+    mi = reshape(xi,28,28);
+    hi = hog20(mi,7,9);
+    Hte = [Hte hi];
+end
+Dhte_Out = [Hte; 1+Lte(:)'];
+end
+%end of function
