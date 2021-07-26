@@ -10,10 +10,23 @@ Dtr = [X1600; yt];
 Dte = [Te28; 1+Lte28(:)'];
 
 %Preprocesssing Stage for HOG
-Dhtr = PreProcessStage(X1600,ytr);
+Dhtr = pre_process_stage(X1600,ytr);
 
 %Testing Stage HOG
 tic
-Dhte = TestStage(Lte28, Te28);
+Dhte = test_stage(Lte28, Te28);
 toc
 TimeHOG = toc;
+
+%the pre_process_stage function
+function [Dhtr_Out] = pre_process_stage(mat_train, ytr)
+H = [];
+for i = 1:16000
+    xi = mat_train(:,i);
+    mi = reshape(xi,28,28);
+    hi = hog20(mi,7,9);
+    H = [H hi];
+end
+Dhtr_Out = [H; ytr];
+end
+%end of the function
