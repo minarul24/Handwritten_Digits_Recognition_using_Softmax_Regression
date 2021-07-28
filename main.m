@@ -1,4 +1,9 @@
 clear;
+%
+%Author:    Minarul Shawon
+%Date:      July 20, 2021
+%
+
 %loading the datasets given in the lab
 load Te28.mat;
 load X1600.mat;
